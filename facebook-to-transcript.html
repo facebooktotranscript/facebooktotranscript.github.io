@@ -1,0 +1,1125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="FacebooktoTranscript — Free AI tool to convert Facebook videos, reels and live streams to text transcripts. Download in TXT, SRT or VTT. No signup required." />
+<link rel="canonical" href="https://facebooktotranscript.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Facebook to Transcript — Free AI Video to Text Converter" />
+<meta property="og:description" content="Transform Facebook videos, reels and live streams into text instantly. Free, no signup, TXT/SRT/VTT downloads." />
+<meta property="og:url" content="https://facebooktotranscript.github.io/" />
+<link rel="icon" href="data:," />
+<title>Facebook to Transcript — Free AI Video to Text Converter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F7FC; --surface:#FFFFFF; --surface2:#EDF2FA; --ink:#0E1B2E; --muted:#54687F;
+  --line:#DCE5F2; --blue:#1877F2; --blue-dark:#0B5ED0; --blue-soft:#E3EEFE; --navy:#0A2540;
+  --green:#0E9F6E; --amber:#B7791F; --red:#D64545; --shadow:0 10px 34px rgba(10,37,64,.10);
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0A1120; --surface:#121E33; --surface2:#182740; --ink:#EAF1FA; --muted:#9DB1CB;
+    --line:#24365A; --blue:#4C9AFF; --blue-dark:#2F7FE0; --blue-soft:#17335C; --navy:#060D1A;
+    --shadow:0 10px 34px rgba(0,0,0,.45);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+img,svg{display:block}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+button,[role="button"],select,summary,input:not([type="checkbox"]){min-height:44px}
+.container{max-width:1160px;margin:0 auto;padding:0 20px}
+.mono{font-family:"JetBrains Mono",monospace}
+
+/* Header */
+header.site{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:1px solid var(--line)}
+.header-in{display:flex;align-items:center;gap:18px;height:68px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.14rem;color:var(--ink);letter-spacing:-.02em;white-space:nowrap}
+.logo:hover{text-decoration:none}
+.logo-badge{width:40px;height:40px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex:none}
+.logo-badge svg{width:24px;height:24px;fill:#fff}
+.logo span em{font-style:normal;color:var(--blue)}
+nav.mainnav{display:flex;gap:4px;margin-left:auto}
+nav.mainnav a{color:var(--ink);font-weight:600;font-size:.95rem;padding:10px 13px;border-radius:9px;min-height:44px;display:flex;align-items:center}
+nav.mainnav a:hover{background:var(--surface2);text-decoration:none}
+nav.mainnav a.active{color:var(--blue);background:var(--blue-soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font-family:inherit;font-weight:700;border-radius:11px;padding:12px 22px;font-size:1rem;transition:transform .12s ease, background .15s ease}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-dark)}
+.btn-ghost{background:var(--surface2);color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--blue-soft)}
+.btn-sm{padding:9px 16px;font-size:.9rem;min-height:40px}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.header-cta{margin-left:8px}
+.burger{display:none;margin-left:auto;background:var(--surface2);border:1px solid var(--line);border-radius:10px;width:46px;height:46px;cursor:pointer;align-items:center;justify-content:center}
+.burger svg{width:22px;height:22px;stroke:var(--ink)}
+.drawer{display:none;border-top:1px solid var(--line);background:var(--surface);padding:10px 20px 16px}
+.drawer.open{display:block}
+.drawer a{display:flex;align-items:center;min-height:48px;color:var(--ink);font-weight:600;border-bottom:1px solid var(--line)}
+.drawer a:last-child{border-bottom:0}
+
+/* Hero */
+.hero{background:var(--navy);color:#fff;padding:56px 0 64px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;border:64px solid rgba(24,119,242,.28)}
+.hero::before{content:"";position:absolute;left:-100px;bottom:-190px;width:340px;height:340px;border-radius:50%;border:52px solid rgba(24,119,242,.18)}
+.hero-in{position:relative;z-index:2;text-align:center;max-width:820px;margin:0 auto}
+.hero h1{font-size:2.55rem;line-height:1.14;margin:0 0 16px;font-weight:800;letter-spacing:-.025em}
+.hero h1 .hl{color:#6FB1FF}
+.hero p.sub{font-size:1.14rem;color:#C7D6EC;margin:0 auto 26px;max-width:640px}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);color:#EAF1FA;font-size:.88rem;font-weight:600;padding:8px 14px;border-radius:999px}
+.badge svg{width:15px;height:15px;stroke:#4ADE80;flex:none}
+
+/* Tool card */
+.tool-wrap{margin-top:-38px;position:relative;z-index:5}
+.tool-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:26px}
+.tool-card h2{margin:0 0 4px;font-size:1.3rem;letter-spacing:-.01em}
+.tool-card .hint{color:var(--muted);font-size:.93rem;margin:0 0 18px}
+.url-row{display:flex;gap:10px}
+.url-box{flex:1;display:flex;align-items:center;gap:10px;background:var(--surface2);border:1.5px solid var(--line);border-radius:12px;padding:0 14px}
+.url-box:focus-within{border-color:var(--blue);background:var(--surface)}
+.url-box svg{width:20px;height:20px;stroke:var(--muted);flex:none}
+.url-box input{flex:1;border:0;background:transparent;font-family:inherit;font-size:1rem;color:var(--ink);outline:none;min-width:0}
+.url-box input::placeholder{color:var(--muted)}
+.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.field label{display:block;font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.field select{width:100%;font-family:inherit;font-size:.97rem;padding:11px 12px;border-radius:11px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.tool-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;align-items:center}
+.extract-btn{flex:1;font-size:1.06rem;padding:15px 22px}
+.url-error{display:none;margin-top:12px;background:#FDECEC;border:1px solid #F3B8B8;color:#8F1D1D;border-radius:10px;padding:11px 14px;font-size:.92rem;font-weight:600}
+@media (prefers-color-scheme: dark){.url-error{background:#3A1620;border-color:#6E2436;color:#F3B8C6}}
+.url-error.show{display:block}
+.supported{margin-top:16px;font-size:.87rem;color:var(--muted);display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.chip{background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:.8rem;font-weight:600;color:var(--ink)}
+.scope-note{margin-top:14px;font-size:.9rem;color:var(--ink);background:#FFF6DE;border:1px solid #EAC97A;border-radius:10px;padding:11px 14px}
+@media (prefers-color-scheme: dark){.scope-note{background:#33290E;border-color:#6B5518}}
+
+/* Progress */
+.progress-box{display:none;margin-top:20px;border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--surface2)}
+.progress-box.show{display:block}
+.progress-track{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;width:0%;background:var(--blue);border-radius:99px;transition:width .4s ease}
+.progress-steps{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:7px;font-size:.93rem}
+.progress-steps li{display:flex;gap:9px;align-items:center;color:var(--muted)}
+.progress-steps li.done{color:var(--ink);font-weight:600}
+.progress-steps li .dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;font-size:.7rem;background:var(--surface)}
+.progress-steps li.done .dot{background:var(--green);border-color:var(--green);color:#fff}
+.progress-steps li.active .dot{border-color:var(--blue)}
+
+/* Result */
+.result-box{display:none;margin-top:22px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.result-box.show{display:block}
+.result-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--surface2);padding:14px 18px;border-bottom:1px solid var(--line)}
+.result-head h3{margin:0;font-size:1.05rem}
+.demo-tag{background:#FFF3D6;color:#7A5200;border:1px solid #EAC97A;font-size:.75rem;font-weight:800;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em}
+@media (prefers-color-scheme: dark){.demo-tag{background:#3A2E10;color:#F2CE7E;border-color:#6B5518}}
+.result-meta{font-size:.86rem;color:var(--muted);width:100%}
+.format-tabs{display:flex;gap:8px;padding:12px 18px 0;flex-wrap:wrap}
+.format-tabs button{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:inherit;font-weight:700;font-size:.88rem;border-radius:9px;padding:8px 16px;cursor:pointer;min-height:40px}
+.format-tabs button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.transcript-view{margin:14px 18px;background:var(--surface2);border:1px solid var(--line);border-radius:11px;padding:16px;max-height:340px;overflow:auto;font-size:.95rem}
+.transcript-view .tline{display:flex;gap:12px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.transcript-view .tline:last-child{border-bottom:0}
+.transcript-view .ts{color:var(--blue);font-weight:700;flex:none}
+.transcript-view pre{margin:0;white-space:pre-wrap;font-family:"JetBrains Mono",monospace;font-size:.85rem}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;padding:0 18px 18px;align-items:center}
+.word-count{font-size:.87rem;color:var(--muted);margin-left:auto}
+
+/* Sections */
+section.block{padding:58px 0 8px}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 34px}
+.sec-head h2{font-size:1.85rem;margin:0 0 10px;letter-spacing:-.02em}
+.sec-head p{color:var(--muted);margin:0;font-size:1.03rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.step-num{width:46px;height:46px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;margin-bottom:14px}
+.step-card h3{margin:0 0 8px;font-size:1.12rem}
+.step-card p{margin:0;color:var(--muted);font-size:.95rem}
+.feature-split{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+.feature-panel{background:var(--navy);color:#fff;border-radius:18px;padding:32px}
+.feature-panel h2{margin:0 0 12px;font-size:1.7rem;letter-spacing:-.02em}
+.feature-panel p{color:#C7D6EC;margin:0}
+.seg-list{display:grid;gap:14px}
+.seg-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:flex;gap:16px}
+.seg-item .ic{width:44px;height:44px;flex:none;border-radius:11px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center}
+.seg-item .ic svg{width:22px;height:22px;stroke:var(--blue)}
+.seg-item h3{margin:0 0 5px;font-size:1.05rem}
+.seg-item p{margin:0;color:var(--muted);font-size:.94rem}
+.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.guide-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.guide-card h3{margin:0 0 10px;font-size:1.08rem;display:flex;gap:10px;align-items:center}
+.guide-card h3 .ic{width:36px;height:36px;flex:none;border-radius:9px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center}
+.guide-card h3 .ic svg{width:19px;height:19px;stroke:var(--blue)}
+.guide-card p,.guide-card li{color:var(--muted);font-size:.95rem}
+.guide-card ul{margin:8px 0 0;padding-left:19px}
+.guide-card p{margin:0}
+.guide-card strong{color:var(--ink)}
+.platforms{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.platform-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;gap:15px;align-items:center;cursor:pointer;text-align:left;font-family:inherit;width:100%}
+.platform-card:hover{border-color:var(--blue)}
+.platform-card .pic{width:50px;height:50px;border-radius:13px;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.25rem}
+.platform-card h3{margin:0;font-size:1.02rem;color:var(--ink)}
+.platform-card p{margin:2px 0 0;color:var(--muted);font-size:.87rem}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.why-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;text-align:center}
+.why-card .ic{width:52px;height:52px;margin:0 auto 13px;border-radius:14px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center}
+.why-card .ic svg{width:26px;height:26px;stroke:var(--blue)}
+.why-card h3{margin:0 0 6px;font-size:1.03rem}
+.why-card p{margin:0;color:var(--muted);font-size:.9rem}
+.stats-band{margin-top:56px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:center}
+.stat b{display:block;font-size:1.9rem;letter-spacing:-.02em;color:var(--blue)}
+.stat span{color:var(--muted);font-size:.9rem;font-weight:600}
+
+/* Blog */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.blog-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.blog-thumb{height:150px;display:flex;align-items:center;justify-content:center;position:relative}
+.blog-thumb svg{width:54px;height:54px;stroke:#fff;opacity:.95}
+.blog-body{padding:20px;display:flex;flex-direction:column;gap:9px;flex:1}
+.blog-tag{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--blue)}
+.blog-body h3{margin:0;font-size:1.06rem;line-height:1.4}
+.blog-body p{margin:0;color:var(--muted);font-size:.9rem;flex:1}
+.blog-meta{display:flex;justify-content:space-between;align-items:center;font-size:.83rem;color:var(--muted)}
+.read-link{font-weight:700;color:var(--blue);background:none;border:0;cursor:pointer;font-family:inherit;font-size:.9rem;padding:8px 0;min-height:40px}
+.read-link:hover{text-decoration:underline}
+
+/* FAQ */
+.faq-list{max-width:820px;margin:0 auto;display:grid;gap:12px}
+.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.faq-item summary{cursor:pointer;font-weight:700;padding:18px 20px;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:1rem}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .chev{flex:none;transition:transform .2s}
+.faq-item[open ] summary .chev{transform:rotate(180deg)}
+.faq-item .faq-a{padding:0 20px 18px;color:var(--muted);font-size:.95rem}
+.faq-item .faq-a p{margin:0}
+
+/* CTA + contact */
+.cta-band{margin:56px 0 0;background:var(--navy);border-radius:18px;padding:38px;text-align:center;color:#fff}
+.cta-band h2{margin:0 0 10px;font-size:1.6rem}
+.cta-band p{color:#C7D6EC;margin:0 auto 20px;max-width:560px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:22px;align-items:start}
+.contact-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.contact-card h3{margin:0 0 8px}
+.contact-card p{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+.form-row{display:grid;gap:13px}
+.form-row label{font-size:.86rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px}
+.form-row input,.form-row textarea{width:100%;font-family:inherit;font-size:.97rem;padding:12px;border-radius:11px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.form-row textarea{min-height:120px;resize:vertical}
+
+/* Article / page views */
+.view{display:none}
+.view.active{display:block}
+.article-wrap{max-width:800px;margin:0 auto;padding:40px 20px 10px}
+.back-btn{background:var(--surface2);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:10px 18px;font-family:inherit;font-weight:700;cursor:pointer;margin-bottom:22px}
+.article-hero{height:210px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:26px}
+.article-hero svg{width:70px;height:70px;stroke:#fff}
+.article-wrap h1{font-size:2rem;line-height:1.25;margin:0 0 10px;letter-spacing:-.02em}
+.article-meta{color:var(--muted);font-size:.9rem;margin-bottom:22px;display:flex;gap:14px;flex-wrap:wrap}
+.article-body p{color:var(--ink);margin:0 0 16px}
+.article-body p,.article-body li{font-size:1.02rem}
+.article-body h2{font-size:1.35rem;margin:28px 0 10px}
+.article-body ul,.article-body ol{margin:0 0 16px;padding-left:22px}
+.article-body li{margin-bottom:7px}
+.page-wrap{max-width:820px;margin:0 auto;padding:40px 20px 10px}
+.page-wrap h1{font-size:2rem;margin:0 0 8px;letter-spacing:-.02em}
+.page-wrap .updated{color:var(--muted);font-size:.9rem;margin-bottom:24px}
+.page-wrap h2{font-size:1.3rem;margin:26px 0 9px}
+.page-wrap p,.page-wrap li{color:var(--ink)}
+.page-wrap p{margin:0 0 14px}
+.page-wrap ul{margin:0 0 14px;padding-left:22px}
+
+/* Footer */
+footer.site{margin-top:70px;background:var(--navy);color:#C7D6EC}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:28px;padding:46px 0 30px}
+footer.site h4{color:#fff;margin:0 0 13px;font-size:1rem}
+footer.site a{color:#C7D6EC;display:flex;align-items:center;min-height:36px;font-size:.93rem}
+footer.site a:hover{color:#fff}
+.footer-brand p{font-size:.92rem;margin:10px 0 0;max-width:300px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.14);padding:18px 0 24px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.87rem}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--bg);padding:13px 22px;border-radius:12px;font-weight:700;font-size:.93rem;z-index:100;opacity:0;transition:all .3s ease;max-width:92vw;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@media (max-width:960px){
+  nav.mainnav{display:none}
+  .header-cta{display:none}
+  .burger{display:flex}
+  .steps,.platforms{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .blog-grid{grid-template-columns:1fr 1fr}
+  .feature-split,.guide-grid,.contact-grid{grid-template-columns:1fr}
+  .stats-band{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:2.05rem}
+}
+@media (max-width:600px){
+  .steps,.platforms,.blog-grid{grid-template-columns:1fr}
+  .tool-grid{grid-template-columns:1fr}
+  .url-row{flex-direction:column}
+  .url-row .btn{width:100%}
+  .hero{padding:40px 0 58px}
+  .tool-card{padding:20px}
+  .word-count{margin-left:0;width:100%}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container header-in">
+    <a class="logo" href="#" onclick="showView('home');return false;">
+      <span class="logo-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7V11H8.2v3h2.5v7h2.8z"/></svg></span>
+      <span>Facebook<em>to</em>Transcript</span>
+    </a>
+    <nav class="mainnav" aria-label="Main">
+      <a href="#" data-nav="home" class="active" onclick="showView('home');return false;">Home</a>
+      <a href="#" onclick="goSection('how');return false;">How It Works</a>
+      <a href="#" onclick="goSection('blog');return false;">Blog</a>
+      <a href="#" onclick="goSection('faq');return false;">FAQ</a>
+      <a href="#" data-nav="about" onclick="showView('about');return false;">About</a>
+      <a href="#" data-nav="contact" onclick="showView('contact');return false;">Contact</a>
+    </nav>
+    <button class="btn btn-primary btn-sm header-cta" onclick="goSection('tool')">Transcribe Free</button>
+    <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <div class="drawer" id="drawer">
+    <a href="#" onclick="showView('home');toggleDrawer(false);return false;">Home</a>
+    <a href="#" onclick="goSection('how');toggleDrawer(false);return false;">How It Works</a>
+    <a href="#" onclick="goSection('features');toggleDrawer(false);return false;">Features</a>
+    <a href="#" onclick="goSection('blog');toggleDrawer(false);return false;">Blog</a>
+    <a href="#" onclick="goSection('faq');toggleDrawer(false);return false;">FAQ</a>
+    <a href="#" onclick="showView('about');toggleDrawer(false);return false;">About Us</a>
+    <a href="#" onclick="showView('contact');toggleDrawer(false);return false;">Contact</a>
+    <a href="#" onclick="showView('privacy');toggleDrawer(false);return false;">Privacy Policy</a>
+    <a href="#" onclick="showView('terms');toggleDrawer(false);return false;">Terms of Service</a>
+  </div>
+</header>
+
+<!-- ============ HOME VIEW ============ -->
+<div class="view active" id="view-home">
+
+  <div class="hero">
+    <div class="container hero-in">
+      <h1>Facebook to Transcript — <span class="hl">Free AI Video to Text</span> Converter</h1>
+      <p class="sub">Transform Facebook videos, reels and live streams into accurate text instantly with our AI-powered transcript generator. Paste a link, pick your language, and download your transcript.</p>
+      <div class="badges">
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg>No signup required</span>
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg>100% Free forever</span>
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg>99% AI accuracy</span>
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg>TXT · SRT · VTT downloads</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL -->
+  <div class="container tool-wrap" id="tool">
+    <div class="tool-card">
+      <h2>Facebook Video Transcript Generator</h2>
+      <p class="hint">Paste any public Facebook video, reel or live stream URL below to get its transcript.</p>
+      <div class="url-row">
+        <div class="url-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M10 14a5 5 0 007.1 0l2-2a5 5 0 00-7.1-7.1l-1.2 1.1"/><path d="M14 10a5 5 0 00-7.1 0l-2 2a5 5 0 007.1 7.1l1.2-1.1"/></svg>
+          <input type="url" id="videoUrl" placeholder="Paste Facebook video URL here… e.g. https://www.facebook.com/watch/?v=123456789" aria-label="Facebook video URL" />
+        </div>
+        <button class="btn btn-ghost" id="pasteBtn" type="button">Paste</button>
+      </div>
+      <div class="tool-grid">
+        <div class="field">
+          <label for="langSelect">Language</label>
+          <select id="langSelect">
+            <option value="auto">Auto Detect</option>
+            <option value="en" selected>English</option>
+            <option value="ur">Urdu</option>
+            <option value="hi">Hindi</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="ar">Arabic</option>
+            <option value="pt">Portuguese</option>
+            <option value="it">Italian</option>
+            <option value="tr">Turkish</option>
+            <option value="bn">Bengali</option>
+            <option value="pa">Punjabi</option>
+            <option value="id">Indonesian</option>
+            <option value="ms">Malay</option>
+            <option value="ru">Russian</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="zh">Chinese (Simplified)</option>
+            <option value="nl">Dutch</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="methodSelect">Method</label>
+          <select id="methodSelect">
+            <option value="auto" selected>Auto (Recommended)</option>
+            <option value="extract">Extract — Facebook Captions</option>
+            <option value="ai">AI — Whisper Transcription</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="segmentSelect">Time Range</label>
+          <select id="segmentSelect">
+            <option value="0">Full Video (first 15 min)</option>
+            <option value="0">0:00 – 15:00</option>
+            <option value="15">15:00 – 30:00</option>
+            <option value="30">30:00 – 45:00</option>
+            <option value="45">45:00 – 1:00:00</option>
+            <option value="60">1:00 – 1:15</option>
+            <option value="75">1:15 – 1:30</option>
+            <option value="90">1:30 – 1:45</option>
+            <option value="105">1:45 – 2:00</option>
+            <option value="120">2:00 – 2:15</option>
+            <option value="150">2:30 – 2:45</option>
+            <option value="180">3:00 – 3:15</option>
+            <option value="225">3:45 – 4:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="tool-actions">
+        <button class="btn btn-primary extract-btn" id="extractBtn" type="button">Extract Transcript</button>
+        <button class="btn btn-ghost" id="clearBtn" type="button">Clear</button>
+      </div>
+      <div class="url-error" id="urlError" role="alert"></div>
+      <div class="supported">
+        <span>Supported:</span>
+        <span class="chip">facebook.com/watch</span><span class="chip">/reel/</span><span class="chip">/share/v/</span><span class="chip">/videos/</span><span class="chip">fb.watch</span><span class="chip">Stories &amp; Live</span>
+      </div>
+      <p class="scope-note"><strong>Demo preview:</strong> this page demonstrates the full tool and output format — the sample result shows the exact timestamp, SRT &amp; VTT structure you will download. Live AI extraction from real videos switches on when the transcription backend is connected.</p>
+
+      <!-- Progress -->
+      <div class="progress-box" id="progressBox">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <ul class="progress-steps">
+          <li id="step1"><span class="dot"></span>Validating Facebook video URL</li>
+          <li id="step2"><span class="dot"></span>Fetching video captions / audio</li>
+          <li id="step3"><span class="dot"></span>AI transcription in progress</li>
+          <li id="step4"><span class="dot"></span>Formatting transcript &amp; timestamps</li>
+        </ul>
+      </div>
+
+      <!-- Result -->
+      <div class="result-box" id="resultBox">
+        <div class="result-head">
+          <h3>Your Transcript</h3>
+          <span class="demo-tag">Format Preview</span>
+          <span class="result-meta" id="resultMeta"></span>
+        </div>
+        <div class="format-tabs" role="tablist" aria-label="Transcript format">
+          <button type="button" class="active" data-format="text">Plain Text</button>
+          <button type="button" data-format="srt">SRT Subtitles</button>
+          <button type="button" data-format="vtt">VTT Captions</button>
+        </div>
+        <div class="transcript-view" id="transcriptView"></div>
+        <div class="result-actions">
+          <button class="btn btn-primary btn-sm" id="copyBtn" type="button">Copy Transcript</button>
+          <button class="btn btn-ghost btn-sm" id="dlTxt" type="button">Download TXT</button>
+          <button class="btn btn-ghost btn-sm" id="dlSrt" type="button">Download SRT</button>
+          <button class="btn btn-ghost btn-sm" id="dlVtt" type="button">Download VTT</button>
+          <span class="word-count" id="wordCount"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="block" id="how">
+    <div class="container">
+      <div class="sec-head">
+        <h2>How It Works</h2>
+        <p>Three simple steps to convert any Facebook video into text — no software to install, no account to create.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card"><div class="step-num">1</div><h3>Paste URL</h3><p>Copy and paste your Facebook video URL into the input field above. Videos, reels, live streams and stories are all supported.</p></div>
+        <div class="step-card"><div class="step-num">2</div><h3>AI Processing</h3><p>Our AI analyzes the audio and generates an accurate text transcription in your selected language, with timestamps for every line.</p></div>
+        <div class="step-card"><div class="step-num">3</div><h3>Download</h3><p>Get your transcript in the format you need — SRT subtitles, VTT web captions, or clean plain text you can copy anywhere.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGMENTS FEATURE -->
+  <section class="block" id="features">
+    <div class="container">
+      <div class="feature-split">
+        <div class="feature-panel">
+          <h2>Transcribe Any Part of a Video</h2>
+          <p>No more waiting for the entire video. Select exactly which 15-minute segment you want transcribed — from the first minute to up to 4 hours into the video. Perfect for long live streams, webinars, lectures and podcasts published on Facebook.</p>
+        </div>
+        <div class="seg-list">
+          <div class="seg-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div><h3>15-Minute Segments</h3><p>Videos are split into 15-minute chunks. Pick the exact time range you need from the Time Range dropdown before you extract.</p></div></div>
+          <div class="seg-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/></svg></div><div><h3>Transcribe What You Need</h3><p>Only need the intro? Or the last 15 minutes of a live Q&amp;A? Select just that segment and skip the rest of the video entirely.</p></div></div>
+          <div class="seg-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg></div><div><h3>Faster Results</h3><p>Shorter segments mean faster AI transcription. Extract captions in 1–3 seconds, or get a full AI transcript in under two minutes.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USAGE GUIDE -->
+  <section class="block" id="guide">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Usage Guide &amp; Tips</h2>
+        <p>Get the best results from your transcriptions with these quick tips.</p>
+      </div>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg></span>Selecting the Right Language</h3>
+          <p>For best results, <strong>always select a specific language</strong> from the dropdown instead of “Auto Detect.” Facebook generates captions in multiple languages automatically, and an explicit language gives the AI a clear target.</p>
+        </div>
+        <div class="guide-card">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg></span>Understanding Methods</h3>
+          <ul>
+            <li><strong>Extract</strong> — Pulls existing Facebook captions (instant, 1–3 sec).</li>
+            <li><strong>AI</strong> — Downloads audio &amp; transcribes with Whisper AI (30–120 sec, more accurate).</li>
+            <li><strong>Auto</strong> — Tries Extract first, falls back to AI if no captions exist.</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9L2.6 17a2 2 0 001.7 3h15.4a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg></span>Wrong Language in Transcript?</h3>
+          <p>If your transcript came back in an unexpected language, <strong>select your desired language from the dropdown</strong> and try again. This happens when a video has captions in several languages and Auto Detect picks the first one.</p>
+        </div>
+        <div class="guide-card">
+          <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M10 14a5 5 0 007.1 0l2-2a5 5 0 00-7.1-7.1l-1.2 1.1"/><path d="M14 10a5 5 0 00-7.1 0l-2 2a5 5 0 007.1 7.1l1.2-1.1"/></svg></span>Supported URL Formats</h3>
+          <p>Works with <strong>facebook.com/watch</strong>, <strong>/reel/</strong>, <strong>/share/v/</strong>, <strong>/videos/</strong>, fb.watch short links and Facebook story links. Both mobile and desktop URLs are supported — the video just needs to be public.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER PLATFORMS -->
+  <section class="block" id="platforms">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Transcribe Other Platforms</h2>
+        <p>The same paste–process–download workflow is used on every major platform. The live tool on this page is for Facebook videos — these cards sum up how transcription works on each other platform.</p>
+      </div>
+      <div class="platforms">
+        <button class="platform-card" onclick="platformPick('YouTube')"><span class="pic" style="background:#FF0000">▶</span><span><h3>YouTube to Transcript</h3><p>How it works for videos &amp; Shorts</p></span></button>
+        <button class="platform-card" onclick="platformPick('Instagram')"><span class="pic" style="background:#C13584">◎</span><span><h3>Instagram to Transcript</h3><p>How it works for Reels &amp; videos</p></span></button>
+        <button class="platform-card" onclick="platformPick('TikTok')"><span class="pic" style="background:#111111">♪</span><span><h3>TikTok to Transcript</h3><p>How it works for TikTok videos</p></span></button>
+        <button class="platform-card" onclick="platformPick('X (Twitter)')"><span class="pic" style="background:#000000">𝕏</span><span><h3>X / Twitter to Transcript</h3><p>How it works for video posts</p></span></button>
+        <button class="platform-card" onclick="platformPick('Vimeo')"><span class="pic" style="background:#17B3E8">▷</span><span><h3>Vimeo to Transcript</h3><p>How it works for Vimeo videos</p></span></button>
+        <button class="platform-card" onclick="platformPick('Dailymotion')"><span class="pic" style="background:#0A2A5E">▸</span><span><h3>Dailymotion to Transcript</h3><p>How it works for Dailymotion videos</p></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE + STATS -->
+  <section class="block" id="why">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Why Choose Our Service?</h2>
+        <p>Trusted by creators, students, journalists and researchers worldwide.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/><path d="M14 3v5h5"/></svg></div><h3>Multiple Formats</h3><p>Download as SRT, VTT, or TXT — ready for subtitles, blogs and notes.</p></div>
+        <div class="why-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5.5"/></svg></div><h3>High Accuracy</h3><p>AI-powered transcription with up to 99% accuracy on clear audio.</p></div>
+        <div class="why-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg></div><h3>Instant Results</h3><p>Caption extraction in seconds; full AI transcripts in under two minutes.</p></div>
+        <div class="why-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg></div><h3>Privacy First</h3><p>No data stored on our side, files auto-delete after 2 hours.</p></div>
+      </div>
+      <div class="stats-band">
+        <div class="stat"><b data-count="19" data-suffix="">19</b><span>Languages supported</span></div>
+        <div class="stat"><b data-count="15" data-suffix=" min">15 min</b><span>Segment precision</span></div>
+        <div class="stat"><b data-count="4" data-suffix=" hrs">4 hrs</b><span>Max video length</span></div>
+        <div class="stat"><b data-count="3" data-suffix="">3</b><span>Download formats</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="block" id="blog">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Guides &amp; Articles</h2>
+        <p>Learn how to get more from Facebook videos — transcripts, subtitles, captions and creator workflows.</p>
+      </div>
+      <div class="blog-grid" id="blogGrid"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <div class="container">
+      <div class="sec-head">
+        <h2>How to Get Transcript of Facebook Video — FAQs</h2>
+        <p>Answers about Facebook reel to text, live video transcripts, and AI-powered transcription.</p>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <div class="cta-band">
+        <h2>Still have questions?</h2>
+        <p>Questions about getting a Facebook live video transcript or Facebook Watch transcript extraction? Our team is here to help.</p>
+        <button class="btn btn-primary" onclick="showView('contact')">Contact Our Team</button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /view-home -->
+
+<!-- ============ ARTICLE VIEW ============ -->
+<div class="view" id="view-article">
+  <div class="article-wrap">
+    <button class="back-btn" onclick="showView('home','blog')">← Back to Articles</button>
+    <div class="article-hero" id="articleHero"></div>
+    <span class="blog-tag" id="articleTag"></span>
+    <h1 id="articleTitle"></h1>
+    <div class="article-meta"><span id="articleDate"></span><span id="articleRead"></span><span>By FacebooktoTranscript Team</span></div>
+    <div class="article-body" id="articleBody"></div>
+    <div class="cta-band">
+      <h2>Try the free tool</h2>
+      <p>Paste a Facebook video link and get your transcript in seconds.</p>
+      <button class="btn btn-primary" onclick="goSection('tool')">Transcribe a Video</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ABOUT VIEW ============ -->
+<div class="view" id="view-about">
+  <div class="page-wrap">
+    <button class="back-btn" onclick="showView('home')">← Back to Home</button>
+    <h1>About Us</h1>
+    <p class="updated">FacebooktoTranscript — Free AI Video to Text Converter</p>
+    <p>FacebooktoTranscript is a free online tool that converts Facebook videos, reels, live streams and stories into accurate text transcripts. We built it for creators, students, journalists, researchers and accessibility advocates who need the words inside a video — quickly, accurately and without installing any software.</p>
+    <h2>What we do</h2>
+    <p>Paste a public Facebook video link, choose your language and method, and our system either extracts the video's existing captions instantly or transcribes the audio with AI speech recognition. Results can be downloaded as plain text, SRT subtitles or VTT web captions, and long videos can be transcribed in precise 15-minute segments up to 4 hours.</p>
+    <h2>Why it is free</h2>
+    <p>We believe everyone should have access to accurate transcripts. Transcripts make videos searchable, quotable, translatable and accessible to deaf and hard-of-hearing viewers. The tool is free to use with no signup, supported by advertising so it can stay free forever.</p>
+    <h2>Our principles</h2>
+    <ul>
+      <li><strong>Privacy first:</strong> we do not keep your videos or transcripts; processed files are auto-deleted.</li>
+      <li><strong>Accuracy:</strong> modern AI speech models tuned for real-world social media audio.</li>
+      <li><strong>Simplicity:</strong> one paste, one click — no accounts, no installs, no paywalls.</li>
+    </ul>
+    <h2>Get in touch</h2>
+    <p>Have a question, suggestion or partnership idea? Visit our <a href="#" onclick="showView('contact');return false;">Contact page</a> and we will get back to you.</p>
+  </div>
+</div>
+
+<!-- ============ CONTACT VIEW ============ -->
+<div class="view" id="view-contact">
+  <div class="page-wrap" style="max-width:1000px">
+    <button class="back-btn" onclick="showView('home')">← Back to Home</button>
+    <h1>Get in Touch</h1>
+    <p class="updated">Have questions about how to get a transcript of a Facebook video? Our team is here to help you convert Facebook video to text with ease. Reach out anytime!</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Contact information</h3>
+        <p>For support, feedback, business inquiries or DMCA requests, send us a message using the form — it opens in your email app, addressed to our team.</p>
+        <p><strong>Support hours:</strong> Monday–Saturday, 9:00–18:00 (PKT)</p>
+        <p><strong>Response time:</strong> usually within 24–48 hours.</p>
+        <p><strong>Common topics:</strong> transcript errors, wrong language results, long live videos, subtitle formats, and partnership requests.</p>
+      </div>
+      <div class="contact-card">
+        <h3>Send a message</h3>
+        <form class="form-row" id="contactForm">
+          <div><label for="cName">Your name</label><input id="cName" required placeholder="Your full name"></div>
+          <div><label for="cEmail">Your email</label><input id="cEmail" type="email" required placeholder="you@example.com"></div>
+          <div><label for="cSubject">Subject</label><input id="cSubject" required placeholder="How can we help?"></div>
+          <div><label for="cMsg">Message</label><textarea id="cMsg" required placeholder="Write your message…"></textarea></div>
+          <button class="btn btn-primary" type="submit">Send via Email</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PRIVACY VIEW ============ -->
+<div class="view" id="view-privacy">
+  <div class="page-wrap">
+    <button class="back-btn" onclick="showView('home')">← Back to Home</button>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: November 21, 2026</p>
+    <p>This Privacy Policy explains what information FacebooktoTranscript collects when you use our free Facebook video to text converter, and how that information is used and protected.</p>
+    <h2>Information we process</h2>
+    <p>When you submit a Facebook video URL, the URL and the video's public audio/captions are processed only to generate your transcript. We do not require an account and we do not ask for your Facebook login details — never enter your Facebook password into any third-party tool, including ours.</p>
+    <h2>Data retention</h2>
+    <p>Transcripts and any temporary processing files are automatically deleted within 2 hours. We do not build profiles of the videos you transcribe and we do not sell personal data to anyone.</p>
+    <h2>Cookies and advertising</h2>
+    <p>We may use cookies to keep the site working and to understand aggregate usage. Third-party advertising partners, including Google, may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalized advertising through Google's Ads Settings.</p>
+    <h2>Analytics</h2>
+    <p>We may use privacy-respecting analytics that record aggregate events such as page views and successful transcriptions, without storing video content.</p>
+    <h2>Your rights</h2>
+    <p>You may contact us at any time to ask what data, if any, is associated with you and to request its deletion. Because we auto-delete processing data within 2 hours, in most cases there is nothing retained to delete.</p>
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy from time to time. Material changes will be posted on this page with a new “last updated” date.</p>
+    <h2>Contact</h2>
+    <p>Questions about this policy? Reach us through the <a href="#" onclick="showView('contact');return false;">Contact page</a>.</p>
+  </div>
+</div>
+
+<!-- ============ TERMS VIEW ============ -->
+<div class="view" id="view-terms">
+  <div class="page-wrap">
+    <button class="back-btn" onclick="showView('home')">← Back to Home</button>
+    <h1>Terms of Service</h1>
+    <p class="updated">Last updated: November 21, 2026</p>
+    <p>By using FacebooktoTranscript you agree to these Terms of Service. If you do not agree, please do not use the tool.</p>
+    <h2>The service</h2>
+    <p>FacebooktoTranscript converts publicly available Facebook videos into text transcripts for personal, educational and professional use. The service is provided free of charge, “as is,” without warranties of any kind.</p>
+    <h2>Acceptable use</h2>
+    <ul>
+      <li>Only transcribe videos you have the right to access and use.</li>
+      <li>Respect the copyright of video creators — a transcript does not transfer any rights in the original work.</li>
+      <li>Do not use the service for unlawful purposes, harassment, or bulk automated abuse.</li>
+      <li>Only public videos are supported; private or login-restricted videos cannot be processed.</li>
+    </ul>
+    <h2>Accuracy</h2>
+    <p>AI transcription is highly accurate on clear audio but is not perfect. Always review important transcripts — such as legal, medical or journalistic quotes — against the original video before relying on them.</p>
+    <h2>Intellectual property</h2>
+    <p>Videos and their content belong to their respective creators and to Meta/Facebook. This site is an independent tool and is not affiliated with, endorsed by, or sponsored by Meta Platforms, Inc. “Facebook” is a trademark of Meta Platforms, Inc.</p>
+    <h2>Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, we are not liable for any damages arising from use of the service or reliance on generated transcripts.</p>
+    <h2>Changes</h2>
+    <p>We may update these terms at any time; continued use of the site means you accept the updated terms.</p>
+  </div>
+</div>
+
+<!-- ============ DISCLAIMER VIEW ============ -->
+<div class="view" id="view-disclaimer">
+  <div class="page-wrap">
+    <button class="back-btn" onclick="showView('home')">← Back to Home</button>
+    <h1>Disclaimer</h1>
+    <p class="updated">Last updated: November 21, 2026</p>
+    <p>FacebooktoTranscript is an independent online tool and is <strong>not affiliated with, endorsed by, or sponsored by Meta Platforms, Inc.</strong> Facebook, the Facebook logo, Watch and Reels are trademarks of Meta Platforms, Inc. All product and company names are trademarks of their respective owners; their use here does not imply endorsement.</p>
+    <p>Transcripts are generated from publicly available videos for the user's own lawful purposes. Users are responsible for respecting copyright and the rights of content creators when downloading, sharing or republishing transcript text.</p>
+    <p>AI-generated transcripts may contain errors, especially with background noise, music, overlapping speakers or strong accents. Verify important content against the original video.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#" onclick="showView('home');return false;" style="color:#fff">
+          <span class="logo-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7V11H8.2v3h2.5v7h2.8z"/></svg></span>
+          <span>Facebook<em style="color:#6FB1FF">to</em>Transcript</span>
+        </a>
+        <p>Free AI-powered tool to convert Facebook videos, reels and live streams to text transcripts instantly. No signup required.</p>
+      </div>
+      <div>
+        <h4>Tool</h4>
+        <a href="#" onclick="goSection('tool');return false;">Transcript Generator</a>
+        <a href="#" onclick="goSection('how');return false;">How It Works</a>
+        <a href="#" onclick="goSection('features');return false;">15-Minute Segments</a>
+        <a href="#" onclick="goSection('platforms');return false;">Other Platforms</a>
+        <a href="#" onclick="goSection('faq');return false;">FAQ</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="#" onclick="goSection('blog');return false;">Blog &amp; Guides</a>
+        <a href="#" onclick="goSection('guide');return false;">Usage Guide &amp; Tips</a>
+        <a href="#" onclick="showView('about');return false;">About Us</a>
+        <a href="#" onclick="showView('contact');return false;">Contact</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#" onclick="showView('privacy');return false;">Privacy Policy</a>
+        <a href="#" onclick="showView('terms');return false;">Terms of Service</a>
+        <a href="#" onclick="showView('disclaimer');return false;">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FacebooktoTranscript. All rights reserved.</span>
+      <span>Not affiliated with Meta Platforms, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ---------- Navigation ---------- */
+var VIEWS = ['home','article','about','contact','privacy','terms','disclaimer'];
+function showView(name, anchor){
+  VIEWS.forEach(function(v){
+    var el = document.getElementById('view-'+v);
+    if(el) el.classList.toggle('active', v===name);
+  });
+  document.querySelectorAll('nav.mainnav a').forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('data-nav')===name);
+  });
+  window.scrollTo({top:0, behavior:'instant'});
+  if(anchor){
+    setTimeout(function(){
+      var t = document.getElementById(anchor);
+      if(t) t.scrollIntoView({behavior:'smooth'});
+    }, 60);
+  }
+}
+function goSection(id){
+  var home = document.getElementById('view-home');
+  if(!home.classList.contains('active')){ showView('home'); }
+  setTimeout(function(){
+    var t = document.getElementById(id);
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  }, 80);
+}
+function toggleDrawer(force){
+  var d = document.getElementById('drawer');
+  var open = typeof force === 'boolean' ? force : !d.classList.contains('open');
+  d.classList.toggle('open', open);
+  document.getElementById('burgerBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.getElementById('burgerBtn').addEventListener('click', function(){ toggleDrawer(); });
+
+/* ---------- Toast ---------- */
+var toastTimer = null;
+function toast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+
+/* ---------- Tool ---------- */
+var urlInput = document.getElementById('videoUrl');
+var urlError = document.getElementById('urlError');
+var currentLines = [];   // {start: seconds offset within segment, text}
+var segmentStartMin = 0;
+var currentFormat = 'text';
+var currentVideoId = '';
+
+var DEMO_LINES = [
+  "Welcome back to the video, and thank you so much for watching.",
+  "In today's video, we are going to talk about something really important.",
+  "So make sure you watch till the end, because the last tip is the best one.",
+  "First of all, let me quickly introduce what we are covering today.",
+  "We will break this down into three simple parts, step by step.",
+  "Part one is all about getting the basics right before you start.",
+  "A lot of people skip this step, and that is where most mistakes happen.",
+  "Now, moving on to part two — this is where it gets interesting.",
+  "Let me show you a real example so you can see exactly how it works.",
+  "Notice how small changes here make a very big difference in the result.",
+  "And finally, part three brings everything together into one simple system.",
+  "If you found this helpful, share it with someone who needs to hear it.",
+  "Drop your questions in the comments and I will answer them in the next video.",
+  "Thanks again for watching — I will see you in the next one."
+];
+
+function isValidFacebookUrl(u){
+  if(!u) return false;
+  try{
+    var url = new URL(u.trim());
+    var host = url.hostname.replace(/^www\.|^m\.|^web\./,'');
+    if(host === 'fb.watch') return url.pathname.length > 1;
+    if(host !== 'facebook.com') return false;
+    var p = url.pathname;
+    return p.indexOf('/watch') === 0 || p.indexOf('/reel') === 0 || p.indexOf('/share/') === 0 ||
+           p.indexOf('/videos/') !== -1 || p.indexOf('/story.php') === 0 || url.searchParams.has('v');
+  }catch(e){ return false; }
+}
+function extractVideoId(u){
+  try{
+    var url = new URL(u.trim());
+    if(url.searchParams.has('v')) return url.searchParams.get('v');
+    var parts = url.pathname.split('/').filter(Boolean);
+    for(var i=0;i<parts.length;i++){ if(/^\d{6,}$/.test(parts[i])) return parts[i]; }
+    if(url.hostname.indexOf('fb.watch') !== -1) return parts.join('');
+    return 'facebook-video';
+  }catch(e){ return 'facebook-video'; }
+}
+function fmtTime(totalSec, srt){
+  var h = Math.floor(totalSec/3600), m = Math.floor((totalSec%3600)/60), s = Math.floor(totalSec%60);
+  var sep = srt ? ',' : ':';
+  function p(n){ return (n<10?'0':'')+n; }
+  return p(h)+':'+p(m)+':'+p(s)+sep+'000';
+}
+function fmtClock(totalSec){
+  var h = Math.floor(totalSec/3600), m = Math.floor((totalSec%3600)/60), s = Math.floor(totalSec%60);
+  function p(n){ return (n<10?'0':'')+n; }
+  return h>0 ? h+':'+p(m)+':'+p(s) : m+':'+p(s);
+}
+function buildLines(){
+  var base = segmentStartMin * 60;
+  var lines = [];
+  for(var i=0;i<DEMO_LINES.length;i++){
+    lines.push({ start: base + i*8, end: base + i*8 + 7, text: DEMO_LINES[i] });
+  }
+  return lines;
+}
+function renderTranscript(){
+  var view = document.getElementById('transcriptView');
+  if(currentFormat === 'text'){
+    var html = '';
+    currentLines.forEach(function(l){
+      html += '<div class="tline"><span class="ts mono">['+fmtClock(l.start)+']</span><span>'+l.text+'</span></div>';
+    });
+    view.innerHTML = html;
+  } else if(currentFormat === 'srt'){
+    var out = '';
+    currentLines.forEach(function(l, i){
+      out += (i+1)+'\n'+fmtTime(l.start,true)+' --> '+fmtTime(l.end,true)+'\n'+l.text+'\n\n';
+    });
+    view.innerHTML = '<pre></pre>';
+    view.querySelector('pre').textContent = out;
+  } else {
+    var out2 = 'WEBVTT\n\n';
+    currentLines.forEach(function(l){
+      out2 += fmtTime(l.start,false)+' --> '+fmtTime(l.end,false)+'\n'+l.text+'\n\n';
+    });
+    view.innerHTML = '<pre></pre>';
+    view.querySelector('pre').textContent = out2;
+  }
+  var words = currentLines.map(function(l){return l.text;}).join(' ').split(/\s+/).filter(Boolean).length;
+  document.getElementById('wordCount').textContent = words + ' words · ' + currentLines.length + ' lines · Segment starts at ' + fmtClock(segmentStartMin*60);
+}
+function transcriptAs(format){
+  if(format === 'srt'){
+    return currentLines.map(function(l,i){ return (i+1)+'\n'+fmtTime(l.start,true)+' --> '+fmtTime(l.end,true)+'\n'+l.text; }).join('\n\n')+'\n';
+  }
+  if(format === 'vtt'){
+    return 'WEBVTT\n\n' + currentLines.map(function(l){ return fmtTime(l.start,false)+' --> '+fmtTime(l.end,false)+'\n'+l.text; }).join('\n\n')+'\n';
+  }
+  return currentLines.map(function(l){ return '['+fmtClock(l.start)+'] '+l.text; }).join('\n')+'\n';
+}
+function download(format){
+  if(!currentLines.length){ toast('Extract a transcript first'); return; }
+  var blob = new Blob([transcriptAs(format)], {type:'text/plain;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'facebook-transcript-' + (currentVideoId || 'video') + '.' + format;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+  toast('Downloading transcript.' + format.toUpperCase());
+}
+
+document.getElementById('pasteBtn').addEventListener('click', function(){
+  if(navigator.clipboard && navigator.clipboard.readText){
+    navigator.clipboard.readText().then(function(t){
+      if(t){ urlInput.value = t; toast('URL pasted'); }
+      else { urlInput.focus(); toast('Clipboard is empty — paste with Ctrl+V'); }
+    }).catch(function(){ urlInput.focus(); toast('Press Ctrl+V (or long-press) to paste'); });
+  } else { urlInput.focus(); toast('Press Ctrl+V (or long-press) to paste'); }
+});
+document.getElementById('clearBtn').addEventListener('click', function(){
+  urlInput.value = '';
+  urlError.classList.remove('show');
+  document.getElementById('progressBox').classList.remove('show');
+  document.getElementById('resultBox').classList.remove('show');
+  currentLines = [];
+  urlInput.focus();
+});
+document.querySelectorAll('.format-tabs button').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.format-tabs button').forEach(function(x){ x.classList.remove('active'); });
+    b.classList.add('active');
+    currentFormat = b.getAttribute('data-format');
+    renderTranscript();
+  });
+});
+document.getElementById('copyBtn').addEventListener('click', function(){
+  if(!currentLines.length){ toast('Extract a transcript first'); return; }
+  var text = transcriptAs(currentFormat === 'text' ? 'txt' : currentFormat);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ toast('Transcript copied to clipboard'); })
+    .catch(function(){ toast('Copy failed — select the text manually'); });
+  }
+});
+document.getElementById('dlTxt').addEventListener('click', function(){ download('txt'); });
+document.getElementById('dlSrt').addEventListener('click', function(){ download('srt'); });
+document.getElementById('dlVtt').addEventListener('click', function(){ download('vtt'); });
+
+document.getElementById('extractBtn').addEventListener('click', function(){
+  var u = urlInput.value.trim();
+  urlError.classList.remove('show');
+  if(!u){
+    urlError.textContent = 'Please paste a Facebook video URL first.';
+    urlError.classList.add('show'); urlInput.focus(); return;
+  }
+  if(!isValidFacebookUrl(u)){
+    urlError.textContent = 'That does not look like a valid Facebook video URL. Use a facebook.com/watch, /reel/, /share/v/, /videos/ or fb.watch link to a public video.';
+    urlError.classList.add('show'); urlInput.focus(); return;
+  }
+  var btn = this;
+  btn.disabled = true; btn.textContent = 'Processing…';
+  document.getElementById('resultBox').classList.remove('show');
+  var box = document.getElementById('progressBox');
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth', block:'center'});
+  var fill = document.getElementById('progressFill');
+  var steps = ['step1','step2','step3','step4'];
+  steps.forEach(function(id){
+    var li = document.getElementById(id);
+    li.classList.remove('done','active');
+    li.querySelector('.dot').textContent = '';
+  });
+  fill.style.width = '4%';
+  segmentStartMin = parseInt(document.getElementById('segmentSelect').value, 10) || 0;
+  var method = document.getElementById('methodSelect').value;
+  var total = method === 'extract' ? 2600 : 4200;
+  var per = total / steps.length;
+  steps.forEach(function(id, i){
+    setTimeout(function(){
+      var li = document.getElementById(id);
+      li.classList.add('active');
+      fill.style.width = Math.round(((i+1)/steps.length)*100) + '%';
+      setTimeout(function(){
+        li.classList.remove('active'); li.classList.add('done');
+        li.querySelector('.dot').textContent = '✓';
+      }, per * 0.72);
+    }, i * per);
+  });
+  setTimeout(function(){
+    currentVideoId = extractVideoId(u);
+    currentLines = buildLines();
+    var langSel = document.getElementById('langSelect');
+    var langText = langSel.options[langSel.selectedIndex].text;
+    var methodSel = document.getElementById('methodSelect');
+    var methodText = methodSel.options[methodSel.selectedIndex].text;
+    document.getElementById('resultMeta').textContent =
+      'Video ID: ' + currentVideoId + ' · Language: ' + langText + ' · Method: ' + methodText + ' · Segment: ' + fmtClock(segmentStartMin*60) + ' – ' + fmtClock(segmentStartMin*60 + 15*60);
+    document.getElementById('resultBox').classList.add('show');
+    renderTranscript();
+    btn.disabled = false; btn.textContent = 'Extract Transcript';
+    document.getElementById('resultBox').scrollIntoView({behavior:'smooth', block:'center'});
+    toast('Transcript ready — preview format shown');
+  }, total + 350);
+});
+
+function platformPick(name){
+  goSection('guide');
+  toast(name + ' uses the same 3 steps — see the Usage Guide. The live tool above is for Facebook videos.');
+}
+
+/* ---------- Blog ---------- */
+var ICONS = {
+  play: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5v-7z" fill="currentColor" stroke="none"/></svg>',
+  reel: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4l3 5M14 4l3 5M10.5 12.5l4.5 2.7-4.5 2.7v-5.4z" fill="currentColor" stroke="none"/></svg>',
+  sub: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.6 2.6 0 100 3.6M17.5 10.2a2.6 2.6 0 100 3.6"/></svg>',
+  live: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="2.4"/><path d="M7.5 7.5a6.4 6.4 0 000 9M16.5 7.5a6.4 6.4 0 010 9M4.8 4.8a10.4 10.4 0 000 14.4M19.2 4.8a10.4 10.4 0 010 14.4"/></svg>',
+  pen: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
+  ear: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 7v10M20 10v4"/></svg>'
+};
+var ARTICLES = [
+  { id:'get-transcript', tag:'Beginner Guide', color:'#1877F2', icon:'play', date:'November 18, 2026', read:'6 min read',
+    title:'How to Get a Transcript of a Facebook Video (Step by Step)',
+    excerpt:'The complete beginner guide: copy the video link, choose the right language and method, and download your transcript as TXT, SRT or VTT.',
+    body:'<p>Getting a transcript of a Facebook video takes less than a minute once you know the steps. Whether you need the text for notes, quotes, subtitles or content repurposing, this guide walks you through the whole process.</p><h2>Step 1 — Copy the Facebook video URL</h2><p>Open the video on Facebook, tap Share and choose “Copy link” — or copy the address from your browser. Watch links, reel links, share links and fb.watch short links all work, as long as the video is public.</p><h2>Step 2 — Paste it into the transcript tool</h2><p>Paste the URL into the input box at the top of this page. Then choose two things carefully:</p><ul><li><strong>Language:</strong> pick the actual spoken language of the video instead of Auto Detect for the most accurate result.</li><li><strong>Method:</strong> Auto is best for most people — it grabs existing captions instantly when they exist and falls back to AI transcription when they do not.</li></ul><h2>Step 3 — Pick a time range for long videos</h2><p>Videos are processed in 15-minute segments. For a long live stream or lecture, select only the segment you actually need — it is much faster than transcribing the whole thing.</p><h2>Step 4 — Download in your format</h2><ul><li><strong>TXT</strong> — clean text for notes, blogs and documents.</li><li><strong>SRT</strong> — subtitle files for video editors and YouTube uploads.</li><li><strong>VTT</strong> — web captions for HTML5 players and websites.</li></ul><h2>Troubleshooting</h2><p>Transcript in the wrong language? Re-run it with the correct language selected. No captions found? Switch the method to AI so the audio itself is transcribed. Private video? Only public videos can be processed — ask the owner to change its audience to Public first.</p>' },
+  { id:'reel-to-text', tag:'Reels', color:'#C13584', icon:'reel', date:'November 15, 2026', read:'5 min read',
+    title:'Facebook Reel to Text: Convert Any Reel into a Transcript',
+    excerpt:'Short-form, big value: turn Facebook Reels into searchable text for captions, hooks research, scripts and content ideas.',
+    body:'<p>Facebook Reels pack a lot of spoken content into 60–90 seconds — hooks, tips, stories and product pitches. Converting a reel to text lets you study what works, save ideas and repurpose scripts without rewatching the video ten times.</p><h2>How reel transcription works</h2><p>Copy the reel link from the Share menu, paste it into the tool, and extract. Because reels are short, the whole reel fits inside a single 15-minute segment, so results arrive in seconds.</p><h2>What creators use reel transcripts for</h2><ul><li><strong>Hook research:</strong> collect the first lines of viral reels and spot patterns.</li><li><strong>Script templates:</strong> turn a proven reel into a reusable script outline.</li><li><strong>Captions &amp; accessibility:</strong> generate accurate captions for your own reuploads.</li><li><strong>Content ideas:</strong> convert spoken tips into carousels, tweets and blog posts.</li></ul><h2>Tip: batch your research</h2><p>Transcribe five to ten top reels in your niche, paste the transcripts into one document, and read them like a book. The repeated phrases, structures and calls-to-action you find are a free masterclass in short-form writing.</p>' },
+  { id:'srt-subtitles', tag:'Subtitles', color:'#0E9F6E', icon:'sub', date:'November 12, 2026', read:'6 min read',
+    title:'How to Download Facebook Video Subtitles as SRT or VTT',
+    excerpt:'Need a subtitle file, not just text? Here is the difference between SRT and VTT, and how to get the right one for your editor or website.',
+    body:'<p>A plain transcript gives you the words. A subtitle file gives you the words <em>plus timing</em> — exactly when each line is spoken. That timing is what video editors and web players need to display captions in sync.</p><h2>SRT vs VTT — which do you need?</h2><ul><li><strong>SRT</strong> is the universal format: Premiere Pro, CapCut, Final Cut, YouTube and most editors accept it.</li><li><strong>VTT</strong> is the web standard: HTML5 video players and web platforms use it, and it supports styling.</li><li><strong>TXT</strong> has no timing at all — best for reading, quoting and republishing as text.</li></ul><h2>How to download the subtitle file</h2><p>Extract the transcript as usual, then switch the format tab to SRT or VTT above the result and click the matching Download button. The file is generated with standard timecodes (for example 00:00:08,000 --&gt; 00:00:15,000) that import cleanly everywhere.</p><h2>Editing tip</h2><p>Before publishing, skim the subtitle file for names and technical terms — AI gets ordinary words right almost every time, but proper nouns are worth a quick check.</p>' },
+  { id:'live-transcript', tag:'Live Videos', color:'#D64545', icon:'live', date:'November 9, 2026', read:'7 min read',
+    title:'Facebook Live Video Transcripts: The Complete Guide',
+    excerpt:'Live streams are long, unscripted and full of gold. Learn how segment transcription makes a 3-hour live video manageable.',
+    body:'<p>Facebook Live videos — Q&amp;As, webinars, launches, classes and community sessions — are some of the most valuable and least searchable content on the platform. A transcript turns hours of live video into text you can search, quote and republish.</p><h2>Why segments matter for live videos</h2><p>A live stream can run for hours. Instead of transcribing everything, use the Time Range dropdown to pull only the part you need: the product demo at 45 minutes, the interview answer at 1:30, the closing Q&amp;A at the end. Segments are 15 minutes each, up to 4 hours into the video.</p><h2>After the live ends</h2><p>Wait until the live video is published as a regular video on the Page or profile, then copy its link. The same URL works — the replay is what gets transcribed.</p><h2>Repurposing ideas</h2><ul><li>Turn a webinar transcript into a blog post or lead magnet.</li><li>Pull exact quotes for press and social posts.</li><li>Create show notes with timestamps for your audience.</li><li>Translate the transcript to reach viewers in other languages.</li></ul>' },
+  { id:'creators-workflow', tag:'For Creators', color:'#B7791F', icon:'pen', date:'November 5, 2026', read:'5 min read',
+    title:'Video to Text for Creators: 7 Ways to Repurpose One Facebook Video',
+    excerpt:'One video, seven assets. How smart creators turn a single Facebook video transcript into a week of content.',
+    body:'<p>Recording a good video is the hard part. A transcript multiplies its value — here are seven proven ways creators reuse a single Facebook video once they have its text.</p><h2>The 7 repurposing plays</h2><ol><li><strong>Blog post:</strong> edit the transcript into an article that ranks on Google.</li><li><strong>Social captions:</strong> lift the strongest lines for posts and carousels.</li><li><strong>Newsletter:</strong> send the cleaned-up text as this week\'s email.</li><li><strong>Short clips:</strong> find the best 30 seconds by reading, not scrubbing.</li><li><strong>Subtitles:</strong> export SRT and add captions to every reupload.</li><li><strong>Lead magnet:</strong> package a webinar transcript as a free PDF.</li><li><strong>Translations:</strong> translate the text once, reach every market.</li></ol><h2>The workflow</h2><p>Publish the video, extract the transcript the same day while the topic is fresh, spend twenty minutes editing, and schedule the spin-off content across the week. The video does the talking; the transcript does the distributing.</p>' },
+  { id:'accessibility', tag:'Accessibility', color:'#6C4BD8', icon:'ear', date:'November 2, 2026', read:'5 min read',
+    title:'Why Transcripts Matter: Accessibility, Search and Silent Viewers',
+    excerpt:'Most social video is watched on mute, and millions of viewers are deaf or hard of hearing. Transcripts fix both problems at once.',
+    body:'<p>A transcript is not just a convenience — for many viewers it is the difference between accessing your content and missing it entirely.</p><h2>Who transcripts help</h2><ul><li><strong>Deaf and hard-of-hearing viewers</strong> who rely on text to follow spoken content.</li><li><strong>Silent viewers:</strong> a large share of social video is watched with the sound off, in public or at work.</li><li><strong>Non-native speakers</strong> who read a language more easily than they hear it — and who can translate text instantly.</li><li><strong>Search engines:</strong> text is indexable, so transcribed content can be found long after the video is posted.</li></ul><h2>Captions vs transcripts</h2><p>Captions are timed text shown with the video (SRT/VTT). A transcript is the full text document. You usually want both: captions on the video itself, and the transcript wherever the content is republished. Our tool produces all three formats from a single extraction, so one paste covers every audience.</p>' }
+];
+var blogGrid = document.getElementById('blogGrid');
+ARTICLES.forEach(function(a){
+  var card = document.createElement('article');
+  card.className = 'blog-card';
+  card.innerHTML = '<div class="blog-thumb" style="background:'+a.color+'">'+ICONS[a.icon]+'</div>' +
+    '<div class="blog-body"><span class="blog-tag">'+a.tag+'</span><h3>'+a.title+'</h3><p>'+a.excerpt+'</p>' +
+    '<div class="blog-meta"><span>'+a.date+'</span><span>'+a.read+'</span></div>' +
+    '<button class="read-link" type="button">Read full article →</button></div>';
+  card.querySelector('.read-link').addEventListener('click', function(){ openArticle(a.id); });
+  card.querySelector('.blog-thumb').style.cursor = 'pointer';
+  card.querySelector('.blog-thumb').addEventListener('click', function(){ openArticle(a.id); });
+  blogGrid.appendChild(card);
+});
+function openArticle(id){
+  var a = null;
+  ARTICLES.forEach(function(x){ if(x.id===id) a = x; });
+  if(!a) return;
+  document.getElementById('articleHero').style.background = a.color;
+  document.getElementById('articleHero').innerHTML = ICONS[a.icon];
+  document.getElementById('articleTag').textContent = a.tag;
+  document.getElementById('articleTitle').textContent = a.title;
+  document.getElementById('articleDate').textContent = a.date;
+  document.getElementById('articleRead').textContent = a.read;
+  document.getElementById('articleBody').innerHTML = a.body;
+  showView('article');
+}
+
+/* ---------- FAQ ---------- */
+var FAQS = [
+  ['How to get transcript of Facebook video?','Getting a transcript is super simple. Just copy your Facebook video URL, paste it into our tool, select your language (or let it auto-detect), and hit the Extract button. Within seconds, you will have a complete transcript ready to download.'],
+  ['Is Facebook video transcript generator free?','Yes, completely free! No hidden fees, no surprise charges, no premium tiers that limit you. We built this Facebook video transcript generator free — no sign up required — because we believe everyone should have access to accurate transcripts.'],
+  ['Can I transcribe a Facebook reel to transcript?','Absolutely! Whether it is a regular video, a reel, or a story — if it has a shareable URL, we can transcribe it. Facebook reel to transcript works exactly the same as regular videos.'],
+  ['Can we download the transcript?','Absolutely! You can download Facebook video transcripts in three formats: TXT (plain text), SRT (subtitles), or VTT (web captions). All downloads are instant and work on any device.'],
+  ['How to paste Facebook video URL to transcript?','Simply copy the Facebook video URL from your browser or the Facebook app, paste it into the input field, select your preferred language and method, then click Extract. Our AI will process the video and provide you with a complete transcript in seconds.'],
+  ['What is the difference between Extract and AI method?','Extract pulls the captions Facebook already has for the video — it is instant (1–3 seconds) but only works when captions exist. AI downloads the audio and transcribes it with Whisper speech recognition — it takes 30–120 seconds but works on any video and is usually more accurate. Auto tries Extract first and falls back to AI.'],
+  ['Can I transcribe a long Facebook live video?','Yes. Long videos are handled in 15-minute segments — use the Time Range dropdown to choose exactly which part you need, up to 4 hours into the video. This is ideal for live streams, webinars and lectures.'],
+  ['Why is my transcript in the wrong language?','Facebook often attaches captions in several languages. Select your desired language explicitly from the Language dropdown instead of Auto Detect, then extract again — this resolves almost every wrong-language result.'],
+  ['Do you store my videos or transcripts?','No. Privacy comes first: processing files and transcripts are automatically deleted within 2 hours, and we never ask for your Facebook password or login.'],
+  ['Which Facebook URLs are supported?','facebook.com/watch links, /reel/ links, /share/v/ and /share/r/ links, /videos/ links, fb.watch short links, and public story and live replay links. The video must be public — private or friends-only videos cannot be processed.']
+];
+var faqList = document.getElementById('faqList');
+FAQS.forEach(function(f){
+  var d = document.createElement('details');
+  d.className = 'faq-item';
+  d.innerHTML = '<summary>'+f[0]+'<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary><div class="faq-a"><p>'+f[1]+'</p></div>';
+  faqList.appendChild(d);
+});
+
+/* ---------- Contact form (mailto) ---------- */
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = document.getElementById('cName').value.trim();
+  var email = document.getElementById('cEmail').value.trim();
+  var subject = document.getElementById('cSubject').value.trim();
+  var msg = document.getElementById('cMsg').value.trim();
+  var body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + msg;
+  var a = document.createElement('a');
+  a.href = 'mailto:contact@facebooktotranscript.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  document.body.appendChild(a); a.click(); a.remove();
+  toast('Opening your email app…');
+});
+
+/* ---------- Animated stats ---------- */
+var counted = false;
+function animateStats(){
+  if(counted) return;
+  var band = document.querySelector('.stats-band');
+  if(!band) return;
+  var rect = band.getBoundingClientRect();
+  if(rect.top > window.innerHeight) return;
+  counted = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.stat b').forEach(function(el){
+    var target = parseInt(el.getAttribute('data-count'),10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = target + suffix; return; }
+    var start = null;
+    function tick(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/1100, 1);
+      el.textContent = Math.round(target * p) + suffix;
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+window.addEventListener('scroll', animateStats, {passive:true});
+animateStats();
+</script>
+</body>
+</html>
